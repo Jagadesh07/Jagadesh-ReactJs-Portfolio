@@ -1,0 +1,42 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+  font-family: 'poppins-med';
+  src: url(assets/fonts/Poppins-Medium.ttf);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'poppins';
+  src: url(assets/fonts/Poppins-Regular.ttf);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'poppins-lt';
+  src: url(assets/fonts/Poppins-Light.ttf);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'doto';
+  src: url(assets/fonts/Doto-SemiBold.ttf);
+  font-display: swap;
+}
+@font-face {
+  font-family: 'playwrite';
+  src: url(assets/fonts/PlaywriteIN-Regular.ttf);
+  font-display: swap;
+}
+
+@theme{
+  --font-doto: 'doto',sans-serif;
+  --font-poppins-med:'poppins-med','sans';
+  --font-poppins:'poppins','sans';
+  --font-poppins-lt:'poppins-lt','sans';
+  --font-playwrite:'playwrite', 'sans';
+
+  --clip-profile-bg: polygon(28% 29%, 80% 0%, 92% 92%, 0% 100%);
+  --bg-clip-box:rgba(214, 206, 206, 0.884);
+}
