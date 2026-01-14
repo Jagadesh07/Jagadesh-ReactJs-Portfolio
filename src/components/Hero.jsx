@@ -162,6 +162,75 @@ function Hero() {
         </div>
       </div>
 
+      {/* KEYFRAMES */}
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-14px); }
+        }
+        @keyframes fadeUp {
+          0% { opacity: 0; transform: translateY(18px); }
+          100% { opacity: 1; transform: translateY(0px); }
+        }
+        @keyframes pulseGlow {
+          0%, 100% { opacity: 0.35; transform: scale(1); }
+          50% { opacity: 0.7; transform: scale(1.07); }
+        }
+        @keyframes noiseMove {
+          0% { transform: translate(0,0); }
+          25% { transform: translate(12px,-10px); }
+          50% { transform: translate(-10px,12px); }
+          75% { transform: translate(14px,8px); }
+          100% { transform: translate(0,0); }
+        }
+
+        .glitch {
+          position: relative;
+          display: inline-block;
+        }
+        .glitch::before,
+        .glitch::after {
+          content: attr(data-text);
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          overflow: hidden;
+          opacity: 0.7;
+        }
+        .glitch::before {
+          transform: translate(2px, -2px);
+          color: rgba(255,255,255,0.55);
+          clip-path: inset(0 0 55% 0);
+          animation: glitchTop 2.8s infinite linear alternate-reverse;
+        }
+        .glitch::after {
+          transform: translate(-2px, 2px);
+          color: rgba(160,160,160,0.55);
+          clip-path: inset(45% 0 0 0);
+          animation: glitchBottom 2.8s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitchTop {
+          0% { clip-path: inset(0 0 65% 0); }
+          50% { clip-path: inset(0 0 35% 0); }
+          100% { clip-path: inset(0 0 60% 0); }
+        }
+        @keyframes glitchBottom {
+          0% { clip-path: inset(45% 0 0 0); }
+          50% { clip-path: inset(60% 0 0 0); }
+          100% { clip-path: inset(40% 0 0 0); }
+        }
+
+        .terminalCursor{
+          margin-left: 6px;
+          animation: blink 1s infinite;
+        }
+        @keyframes blink{
+          0%,50%{opacity:1}
+          51%,100%{opacity:0}
+        }
+      `}</style>
     </section>
   );
 }

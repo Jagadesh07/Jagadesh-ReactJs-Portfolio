@@ -207,7 +207,7 @@ function Contact() {
                         hover:-translate-y- hover:bg-black/5 dark:hover:bg-white/10
                         transition-all duration-300
                       "
-                      href="https://www.linkedin.com/in/jagadesh-waran-g-17aa33342/"
+                      href="https://github.com/Jagadesh07"
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Visit GitHub"
