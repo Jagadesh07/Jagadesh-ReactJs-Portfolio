@@ -101,7 +101,7 @@ function About() {
                     <div
                       className="
                         pointer-events-none absolute inset-0 opacity-0
-                        bg-gradient-to-r from-transparent via-white/12 to-transparent
+                        bg-linear-to-r from-transparent via-white/12 to-transparent
                         -translate-x-full group-hover:translate-x-full
                         group-hover:opacity-100
                         transition-all duration-700

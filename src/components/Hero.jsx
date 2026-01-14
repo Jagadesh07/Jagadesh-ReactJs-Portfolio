@@ -1,25 +1,49 @@
-import { memo, useRef } from "react";
-import mobileProfile from "../assets/images/mobile-profile-dark.webp";
+import { memo, useEffect, useRef } from "react";
 
 function Hero() {
   const imgRef = useRef(null);
+  const rectRef = useRef(null);
+  const rafRef = useRef(null);
+
+  // Cache the image rect only when needed
+  const updateRect = () => {
+    if (!imgRef.current) return;
+    rectRef.current = imgRef.current.getBoundingClientRect();
+  };
+
+  useEffect(() => {
+    const onResize = () => updateRect();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  const handleEnter = () => updateRect();
 
   const handleMove = (e) => {
-    if (!imgRef.current) return;
+    const img = imgRef.current;
+    const rect = rectRef.current;
+    if (!img || !rect) return;
 
-    const rect = imgRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
 
     const rotateY = (x - 0.5) * 14;
     const rotateX = (0.5 - y) * 14;
 
-    imgRef.current.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+
+    rafRef.current = requestAnimationFrame(() => {
+      img.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+    });
   };
 
   const handleLeave = () => {
-    if (!imgRef.current) return;
-    imgRef.current.style.transform =
+    const img = imgRef.current;
+    if (!img) return;
+
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+
+    img.style.transform =
       "perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)";
   };
 
@@ -111,17 +135,23 @@ function Hero() {
             <div className="relative z-10 animate-[float_4.8s_ease-in-out_infinite]">
               <img
                 ref={imgRef}
-                src={mobileProfile}
+                src="/mobile-profile-dark.webp"
                 alt="Jagadesh Waran - Software Engineer"
+                onMouseEnter={handleEnter}
                 onMouseMove={handleMove}
                 onMouseLeave={handleLeave}
                 className="
                   w-full rounded-2xl shadow-xl shadow-black/10 dark:shadow-white/10
                   grayscale hover:grayscale-0 transition-all duration-500
-                  will-change-transform
+                  will-change-transform select-none
                 "
-                loading="lazy"
+                width="420"
+                height="520"
+                style={{ aspectRatio: "4 / 5", objectFit: "cover" }}
+                loading="eager"
+                fetchpriority="high"
                 decoding="async"
+                draggable="false"
               />
 
               {/* cyber border */}
@@ -154,7 +184,6 @@ function Hero() {
           100% { transform: translate(0,0); }
         }
 
-        /* glitch effect (WHITE theme) */
         .glitch {
           position: relative;
           display: inline-block;
@@ -209,20 +238,15 @@ function Hero() {
 function CyberGlobe() {
   return (
     <div className="relative w-[170px] h-[170px] sm:w-[220px] sm:h-[220px] xl:w-[260px] xl:h-[260px]">
-      {/* extra glow */}
       <div className="absolute inset-0 rounded-full bg-black/5 dark:bg-white/10 blur-2xl opacity-80" />
-
-      {/* globe */}
       <div className="absolute inset-0 rounded-full border border-black/15 dark:border-white/20 overflow-hidden animate-[globeSpin_10s_linear_infinite]">
         <div className="absolute inset-0 opacity-60 bg-[repeating-linear-gradient(to_bottom,transparent_0px,transparent_10px,rgba(0,0,0,0.22)_11px)] dark:bg-[repeating-linear-gradient(to_bottom,transparent_0px,transparent_10px,rgba(255,255,255,0.18)_11px)]" />
         <div className="absolute inset-0 opacity-45 bg-[repeating-linear-gradient(to_right,transparent_0px,transparent_14px,rgba(0,0,0,0.20)_15px)] dark:bg-[repeating-linear-gradient(to_right,transparent_0px,transparent_14px,rgba(255,255,255,0.16)_15px)] blur-[0.2px]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.35)_75%)] dark:bg-[radial-gradient(circle_at_center,transparent_40%,rgba(255,255,255,0.10)_75%)]" />
       </div>
 
-      {/* orbit ring */}
       <div className="absolute inset-0 rounded-full border border-black/10 dark:border-white/15 rotate-25 animate-[orbit_6s_linear_infinite]" />
 
-      {/* nodes */}
       <span className="cy-node absolute top-[18%] left-[18%]" />
       <span className="cy-node absolute top-[35%] left-[70%]" />
       <span className="cy-node absolute top-[70%] left-[30%]" />
@@ -239,7 +263,6 @@ function CyberGlobe() {
           0% { transform: rotate(25deg); }
           100% { transform: rotate(385deg); }
         }
-
         .cy-node{
           width: 8px;
           height: 8px;
@@ -252,7 +275,6 @@ function CyberGlobe() {
           background: rgba(255,255,255,0.9);
           box-shadow: 0 0 18px rgba(255,255,255,0.25);
         }
-
         @keyframes blink{
           0%, 100% { opacity: 0.35; transform: scale(0.9); }
           50% { opacity: 1; transform: scale(1.25); }
