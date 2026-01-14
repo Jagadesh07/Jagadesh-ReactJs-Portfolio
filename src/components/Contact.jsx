@@ -39,7 +39,7 @@ function TypingDots() {
 function Contact() {
   const [copied, setCopied] = useState(false);
 
-  const email = "jagz07x@gmail.com";
+  const email = "jagadeshwaran2005@gmail.com";
 
   const handleCopy = async () => {
     try {
@@ -207,7 +207,9 @@ function Contact() {
                         hover:-translate-y- hover:bg-black/5 dark:hover:bg-white/10
                         transition-all duration-300
                       "
-                      href="https://github.com/Jagadesh07"
+                      href="
+                      
+                      "
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Visit GitHub"

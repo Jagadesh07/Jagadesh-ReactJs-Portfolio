@@ -183,7 +183,7 @@ function Navbar() {
             </p>
 
             <p className="text-sm md:text-lg font-poppins-med text-black dark:text-white truncate">
-              jagz07x@gmail.com
+              jagadeshwaran2005@gmail.com
             </p>
 
             <p className="mt-4 text-[11px] text-gray-600 dark:text-white/55 font-poppins tracking-widest">
