@@ -200,7 +200,7 @@ function Navbar() {
                   cursor-target p-3 rounded-xl
                   border border-black/15 dark:border-white/20
                   bg-white/60 dark:bg-black/40
-                  hover:-translate-y-[1px] hover:bg-black/5 dark:hover:bg-white/10
+                  hover:-translate-y- hover:bg-black/5 dark:hover:bg-white/10
                   transition-all duration-300
                 "
               >
@@ -216,7 +216,7 @@ function Navbar() {
                   cursor-target p-3 rounded-xl
                   border border-black/15 dark:border-white/20
                   bg-white/60 dark:bg-black/40
-                  hover:-translate-y-[1px] hover:bg-black/5 dark:hover:bg-white/10
+                  hover:-translate-y- hover:bg-black/5 dark:hover:bg-white/10
                   transition-all duration-300
                 "
               >
