@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+    <link rel="preload" as="image" href="/hero.webp" fetchpriority="high" />
+
     <!-- Primary Meta Tags -->
     <title>Jagadesh Waran - Software Engineer Portfolio</title>
     <meta name="title" content="Jagadesh Waran - Software Engineer Portfolio" />
@@ -36,7 +37,29 @@
     <link rel="canonical" href="https://jagz.in/" />
     
     <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <!-- Preconnect (fastest) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- Non render-blocking Google Fonts (example) -->
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<noscript>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+  />
+</noscript>
+
     
     <!-- DNS Prefetch -->
     <link rel="dns-prefetch" href="https://github.com" />
